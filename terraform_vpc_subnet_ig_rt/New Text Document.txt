@@ -1,0 +1,85 @@
+resource "aws_internet_gateway" "tgw" {
+  vpc_id = var.vpc_id
+   
+}
+
+
+resource "aws_route_table" "RTpublic" {
+	vpc_id = var.vpc_id
+	
+route {
+	cidr_block = "0.0.0.0/0"
+	gateway_id = var.gateway_id
+     }
+ 
+ tags = {
+ 	name = "ter public route table"
+	}
+}
+
+
+
+
+resource "aws_route_table_association" "public" {
+	subnet_id = var.subnet_id
+	route_table_id = aws_route_table.RTpublic.id
+}
+
+
+
+resource "aws_instance" "webserver"{
+	ami = var.ami
+	instance_type = var.instance_type
+	subnet_id = aws_subnet.websubnet.id
+
+	tags ={
+		Name = "${var.webserver_name}webserver"
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+varaibles
+
+
+variable "availability_zone"{
+	type = string
+}
+
+
+variable "gateway_id"{
+	type = string
+	description= "gateway id"
+	
+}
+
+variable "webserver_name"{
+	type = string
+	description = " name of the webserver"
+}
+
+variable "ami"{
+	type = string
+	description = "ami for the webserver instance"
+}
+variable "instance_type"{
+	type = string
+	description = "Instance type"
+}
+	
+
+	
+
+
