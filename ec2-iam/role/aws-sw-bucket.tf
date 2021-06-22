@@ -1,8 +1,8 @@
 provider "aws" {
 
   region     = "us-east-2"
-  access_key = "AKIA274JALVXQYJ7EZUU"
-  secret_key = "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"
+  access_key = ""
+  secret_key = "/1"
 
 }
 
@@ -13,8 +13,8 @@ provider "aws" {
 
 terraform {
 	backend "s3" {
-	    access_key = "AKIA274JALVXQYJ7EZUU"
-            secret_key = "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"
+	    access_key = "A"
+            secret_key = "q3uYg0sZV"
 	    bucket = "my-tf-test-bucket121122288"
 	    key = "global/s3/terraform.tfstate"
 	    region = "us-east-2"
